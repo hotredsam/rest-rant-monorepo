@@ -6,19 +6,11 @@ const bcrypt = require('bcrypt');
 const { User } = db;
 
 // GET profile route
+  
 router.get('/profile', async (req, res) => {
-    console.log(req.session.userId); // Logging the userId from session
-    try {
-        let user = await User.findOne({
-            where: {
-                userId: req.session.userId // Using userId from session to find the user
-            }
-        });
-        res.json(user);
-    } catch {
-        res.json(null);
-    }
-});
+    res.json(req.currentUser)
+})
+;
 
 // POST login route
 router.post('/', async (req, res) => {
